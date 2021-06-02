@@ -3,7 +3,7 @@
 // @namespace     https://wiki.shuma.ink
 // @description   一个好用的网盘助手；插件主要功能有：[1]自动匹配页面内百度网盘分享的访问地址及密钥并保存至本地
 // @license       MIT
-// @version       1.0.0
+// @version       1.0.1
 // @author        shuma
 // @source        https://wiki.shuma.ink
 // @include       *://*
