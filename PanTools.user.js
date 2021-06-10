@@ -20,6 +20,7 @@
 // @grant         window.onurlchange
 // @connect       shuma.ink
 // @run-at        document-end
+// @antifeature   membership
 // ==/UserScript==
 
 !function(e) {
