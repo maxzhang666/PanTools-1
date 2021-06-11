@@ -11,7 +11,8 @@
 # 💻脚本教程网站
 ---
 
-[在线教程](https://wiki.shuma.ink)
+🧩获得详细的教程指南:[在线教程](https://wiki.shuma.ink)<br>
+🎯问题反馈交流群:[一键加入](https://jq.qq.com/?_wv=1027&k=FMfKKGY5)<br>
 
 # ✏️特别说明
 ---
