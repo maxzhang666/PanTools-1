@@ -38,40 +38,42 @@
 ## 👉网盘提取码识别功能
 
 1.鼠标选择百度网盘的链接及提取码，即可自动识别。<br>
+<div align=center><img src="https://i.loli.net/2021/05/21/fLmOZya8G4YxrSd.png"></div>
 
-![Snipaste_2021-05-21_18-00-05.png](https://i.loli.net/2021/05/21/fLmOZya8G4YxrSd.png)<br>
+<br>
 
 2.在识别后按照提示框进行打开，顺利打开后将自动填充提取码。<br>
 
-![Snipaste_2021-05-21_18-00-49.png](https://i.loli.net/2021/05/21/PrwVZUi58XbL16e.png)<br>
+<div align=center><img src="https://i.loli.net/2021/05/21/PrwVZUi58XbL16e.png"></div>
+<br>
 
 ## 👉网盘直链解析功能
 
 1.将需要下载的文件（压缩包）保存至你的网盘内，并在网盘内选择你要下载的文件，然后点击名为网盘工具箱-直链的按钮进入解析页面<br>
 
-![360chrome_MhNxUc61fh.png](https://i.loli.net/2021/06/02/y83FQ7HMkaOldcT.png)<br>
+<div align=center><img src="https://i.loli.net/2021/06/02/y83FQ7HMkaOldcT.png"></div>
+<br>
 
 2.进入解析页面后，点击【配置卡密】填写你在右侧公众号中所获取的流量卡密，再点击解析按钮即可完成解析<br>
 
-![360chrome_v1hGdu25iE.png](https://i.loli.net/2021/06/02/mreAgzdMfxKEiRP.png)<br>
+<div align=center><img src="https://i.loli.net/2021/06/02/mreAgzdMfxKEiRP.png"></div><br>
 3.打开IDM，并在下载>选项>下载>设置UA为shuma<br>
+<div align=center><img src="https://i.loli.net/2021/05/23/yBnRM7AzNItgOCl.png"></div><br>
 
-![IDMan_hMXQEQRFib.png](https://i.loli.net/2021/05/23/yBnRM7AzNItgOCl.png)<br>
-
-![IDMan_eMFR9c8L5G.png](https://i.loli.net/2021/05/23/FNxJjcvpdn6i2Ca.png)<br>
+<div align=center><img src="https://i.loli.net/2021/05/23/FNxJjcvpdn6i2Ca.png"></div><br>
 
 4.完成以上设置后，点击【新建任务】填入你解析的直链<br>
+<div align=center><img src="https://i.loli.net/2021/05/23/A6r9RfapFMJETPK.png"></div><br>
 
-![IDMan_BPZedHPbrb.png](https://i.loli.net/2021/05/23/A6r9RfapFMJETPK.png)<br>
 
 5.等待下载完成<br>
-
-![IDMan_xyIqT1Daix.png](https://i.loli.net/2021/05/23/49qcBleYDTFAP8H.png)<br>
+<div align=center><img src="https://i.loli.net/2021/05/23/49qcBleYDTFAP8H.png"></div><br>
 
 # 🔑更多黑科技
 ---
 
 你可以关注微信公众号获取更多技巧与帮助<br>
-![qrcode_for_gh_acb18636a794_258.jpg](https://i.loli.net/2021/05/21/fzvRNcxiKwD3lrQ.jpg)
+<div align=center><img src="https://i.loli.net/2021/05/21/fzvRNcxiKwD3lrQ.jpg"></div><br>
+
 
 
