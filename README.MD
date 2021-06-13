@@ -1,18 +1,19 @@
+拥有一个脚本即可轻松享受互联网冲浪之乐趣，丰富的功能，稳定的服务让效率提升更迅速。
 # 📄脚本公告
 ---
 - 希望各位高抬贵手有问题至反馈区进行反馈，为了使更多用户能够享受便捷也希望热爱greasyfork社区的人士不要频频举报。<br>
 - 有任何问题或因规则不适我会在接到反馈的第一时间进行修正，频繁举报导致脚本被下架也会使得其余用户不能正常地进行反馈与使用。
 
-# 📜脚本介绍
+# 📜脚本功能
 ---
+- ✅支持识别选中内容中的百度网盘链接与提取码，并会在打开网盘页面后自动填充提取码/密码
+- ✅支持免SVIP解析直链进行高速下载
 
-- 支持识别选中内容中的百度网盘链接与提取码，并会在打开网盘页面后自动填充提取码/密码
-- 支持免SVIP解析直链进行高速下载
-
-# 💻脚本教程网站
+# 💻脚本教程与建议反馈
 ---
 
 - 🧩获得详细的教程指南:[在线教程](https://wiki.shuma.ink)<br>
+
 - 🎯问题反馈交流群:[一键加入](https://jq.qq.com/?_wv=1027&k=FMfKKGY5)<br>
 
 # ✏️特别说明
@@ -35,7 +36,10 @@
 <br>
 
 ## 👉网盘提取码识别功能
-
+---
+<details>
+<summary>👐展开获得详细教程</summary>
+<pre><code>
 1.鼠标选择百度网盘的链接及提取码，即可自动识别。<br>
 <div align=center><img src="https://i.loli.net/2021/05/21/fLmOZya8G4YxrSd.png"></div>
 
@@ -45,9 +49,15 @@
 
 <div align=center><img src="https://i.loli.net/2021/05/21/PrwVZUi58XbL16e.png"></div>
 <br>
+</code></pre>
+</details>
+
 
 ## 👉网盘直链解析功能
-
+---
+<details>
+<summary>👐展开获得详细教程</summary>
+<pre><code>
 1.将需要下载的文件（压缩包）保存至你的网盘内，并在网盘内选择你要下载的文件，然后点击名为网盘工具箱-直链的按钮进入解析页面<br>
 
 <div align=center><img src="https://i.loli.net/2021/06/02/y83FQ7HMkaOldcT.png"></div>
@@ -67,12 +77,12 @@
 
 5.等待下载完成<br>
 <div align=center><img src="https://i.loli.net/2021/05/23/49qcBleYDTFAP8H.png"></div><br>
+</code></pre>
+</details>
+
 
 # 🔑更多黑科技
 ---
 
-你可以关注微信公众号获取更多技巧与帮助<br>
+关注微信公众号，你可以获取到更多黑科技与互联网冲浪技巧<br>
 <div align=center><img src="https://i.loli.net/2021/05/21/fzvRNcxiKwD3lrQ.jpg"></div><br>
-
-
-
