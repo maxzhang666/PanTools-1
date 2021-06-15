@@ -12,9 +12,11 @@
 # 💻脚本教程与建议反馈
 ---
 
-- 🧩获得详细的教程指南:[在线教程](https://wiki.shuma.ink)<br>
+## 🧩获得详细的教程指南:[在线教程](https://wiki.shuma.ink)<br>
 
-- 🎯问题反馈交流群:[一键加入](https://jq.qq.com/?_wv=1027&k=FMfKKGY5)<br>
+## 🎯问题反馈交流群:[一键加入](https://jq.qq.com/?_wv=1027&k=FMfKKGY5)<br>
+
+## 🎁支持数码:[获得福利](https://wiki.shuma.ink/zh-cn/ad.html)
 
 # ✏️特别说明
 ---
