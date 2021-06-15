@@ -36,7 +36,7 @@
 ## ⚙️支持网盘
 - 百度网盘
 <br>
-
+ 
 ## 👉网盘提取码识别功能
 ---
 <details>
@@ -47,7 +47,7 @@
 
 <br>
 
-2.在识别后按照提示框进行打开，顺利打开后将自动填充提取码。<br>
+2.在识别后按照提示框进行打开<br>2.1顺利打开后将自动填充提取码。<br>
 
 <div align=center><img src="https://i.loli.net/2021/05/21/PrwVZUi58XbL16e.png"></div>
 <br>
@@ -60,12 +60,12 @@
 <details>
 <summary>👐展开获得详细教程</summary>
 <pre><code>
-1.将需要下载的文件（压缩包）保存至你的网盘内，并在网盘内选择你要下载的文件，然后点击名为网盘工具箱-直链的按钮进入解析页面<br>
+1.将需要下载的文件（压缩包）保存至你的网盘内<br>1.1并在网盘内选择你要下载的文件<br>1.2然后点击名为网盘工具箱-直链的按钮进入解析页面<br>
 
 <div align=center><img src="https://i.loli.net/2021/06/02/y83FQ7HMkaOldcT.png"></div>
 <br>
 
-2.进入解析页面后，点击【配置卡密】填写你在右侧公众号中所获取的流量卡密，再点击解析按钮即可完成解析<br>
+2.进入解析页面后<br>2.2点击【配置卡密】填写你在右侧公众号中所获取的流量卡密<br>2.3再点击解析按钮即可完成解析<br>
 
 <div align=center><img src="https://i.loli.net/2021/06/02/mreAgzdMfxKEiRP.png"></div><br>
 3.打开IDM，并在下载>选项>下载>设置UA为shuma<br>
