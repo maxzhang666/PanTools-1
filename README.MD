@@ -8,6 +8,7 @@
 ---
 - ✅支持识别选中内容中的百度网盘链接与提取码，并会在打开网盘页面后自动填充提取码/密码
 - ✅支持免SVIP解析直链进行高速下载
+- ✅支持淘宝/天猫搜索页列表优惠券查询
 
 # 💻脚本教程与建议反馈
 ---
@@ -16,7 +17,10 @@
 
 ### 🎯问题反馈交流群:[一键加入](https://jq.qq.com/?_wv=1027&k=FMfKKGY5)<br>
 
+### 
+
 ### 🎁支持数码:[获得福利](https://wiki.shuma.ink/zh-cn/ad.html)
+
 
 # ✏️特别说明
 ---
@@ -28,6 +32,7 @@
 
 # 🛠️更新日志<br>
 ---
+- 2021.06.16&emsp; &emsp; v1.0.3 支持淘宝/天猫搜索页列表优惠券查询
 - 2021.06.02&emsp; &emsp; v1.0.1 支持百度网盘直链解析下载
 - 2021.05.21&emsp; &emsp; v1.0.0 支持百度网盘链接识别与填充提取码
 
@@ -37,10 +42,10 @@
 - 百度网盘
 <br>
  
-## 👉网盘提取码识别功能
+## ⌨️网盘提取码识别功能
 ---
 <details>
-<summary>👐展开获得详细教程</summary>
+<summary>展开获得详细教程</summary>
 <pre><code>
 1.鼠标选择百度网盘的链接及提取码，即可自动识别。<br>
 <div align=center><img src="https://i.loli.net/2021/05/21/fLmOZya8G4YxrSd.png"></div>
@@ -55,10 +60,10 @@
 </details>
 
 
-## 👉网盘直链解析功能
+## 🔃网盘直链解析功能
 ---
 <details>
-<summary>👐展开获得详细教程</summary>
+<summary>展开获得详细教程</summary>
 <pre><code>
 1.将需要下载的文件（压缩包）保存至你的网盘内<br>1.1.并在网盘内选择要下载的文件<br>1.2然后点击名为网盘工具箱-直链的按钮进入解析页面<br>
 
@@ -79,6 +84,18 @@
 
 5.等待下载完成<br>
 <div align=center><img src="https://i.loli.net/2021/05/23/49qcBleYDTFAP8H.png"></div><br>
+</code></pre>
+</details>
+
+## 🛒优惠券查询
+<details>
+<summary>展开获得详细教程</summary>
+<pre><code>
+1.进入淘宝/天猫/天猫超市<br>
+2.搜索页搜索任意商品关键词，即可查询优惠券
+<div align=center><img src="https://i.loli.net/2021/06/16/ULhZIT4R1S2Gkvc.jpg"></div>
+<br>
+
 </code></pre>
 </details>
 
