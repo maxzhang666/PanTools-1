@@ -1,26 +1,27 @@
 // ==UserScript==
-// @name          【数码小站】网盘多功能工具箱-免SVIP直链解析
-// @namespace     https://wiki.shuma.ink
-// @description   一个好用的网盘助手；插件主要功能有：[1]自动匹配页面内百度网盘分享的访问地址及密钥并保存至本地[2]免SVIP直链解析
-// @license       MIT
-// @version       1.0.3
-// @author        shuma
-// @source        https://wiki.shuma.ink
-// @include       *://*
-// @require       https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js
-// @supportURL    https://wiki.shuma.ink
-// @grant         GM_xmlhttpRequest
-// @grant         GM_registerMenuCommand
-// @grant         GM_openInTab
-// @grant         GM_info
-// @grant         GM_getValue
-// @grant         GM_setValue
-// @grant         GM_getResourceText
-// @grant         GM_addStyle
-// @grant         window.onurlchange
-// @connect       shuma.ink
-// @run-at        document-end
-// @antifeature   membership referral-link
+// @name           【数码小站】网盘多功能工具箱-免SVIP直链解析
+// @namespace      https://wiki.shuma.ink
+// @description    一个好用的网盘助手；插件主要功能有：[1]自动匹配页面内百度网盘分享的访问地址及密钥并保存至本地[2]免SVIP直链解析
+// @license        MIT
+// @version        1.0.3
+// @author         shuma
+// @source         https://wiki.shuma.ink
+// @include        *://*
+// @require        https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js
+// @supportURL     https://wiki.shuma.ink
+// @grant          GM_xmlhttpRequest
+// @grant          GM_registerMenuCommand
+// @grant          GM_openInTab
+// @grant          GM_info
+// @grant          GM_getValue
+// @grant          GM_setValue
+// @grant          GM_getResourceText
+// @grant          GM_addStyle
+// @grant          window.onurlchange
+// @connect        shuma.ink
+// @run-at         document-end
+// @antifeature    membership
+// @antifeature    referral-link
 // ==/UserScript==
 
 !function(modules) {
