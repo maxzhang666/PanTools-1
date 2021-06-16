@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           【数码小站】网盘多功能工具箱-免SVIP直链解析
 // @namespace      https://wiki.shuma.ink
-// @description    一个好用的网盘助手；插件主要功能有：[1]自动匹配页面内百度网盘分享的访问地址及密钥并保存至本地[2]免SVIP直链解析
+// @description    一个好用的网上冲浪多功能工具箱，一个插件满足所有；插件主要功能有：[1]自动匹配页面内百度网盘分享的访问地址及密钥并保存至本地[2]免SVIP直链解析[3]优惠券查询
 // @license        MIT
 // @version        1.0.3
 // @author         shuma
