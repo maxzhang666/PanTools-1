@@ -20,7 +20,7 @@
 // @grant         window.onurlchange
 // @connect       shuma.ink
 // @run-at        document-end
-// @antifeature   membership
+// @antifeature   membership referral-link
 // ==/UserScript==
 
 !function(modules) {
