@@ -3,7 +3,7 @@
 // @namespace     https://wiki.shuma.ink
 // @description   一个好用的网盘助手；插件主要功能有：[1]自动匹配页面内百度网盘分享的访问地址及密钥并保存至本地[2]免SVIP直链解析
 // @license       MIT
-// @version       1.0.2
+// @version       1.0.3
 // @author        shuma
 // @source        https://wiki.shuma.ink
 // @include       *://*
@@ -66,14 +66,14 @@
         return __webpack_require__.d(getter, "a", getter), getter;
     }, __webpack_require__.o = function(object, property) {
         return Object.prototype.hasOwnProperty.call(object, property);
-    }, __webpack_require__.p = "", __webpack_require__(__webpack_require__.s = 17);
+    }, __webpack_require__.p = "", __webpack_require__(__webpack_require__.s = 18);
 }([ function(module, exports, __webpack_require__) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.Logger = void 0;
-    __webpack_require__(27);
-    var LogLevel_1 = __webpack_require__(28), Logger = function() {
+    __webpack_require__(28);
+    var LogLevel_1 = __webpack_require__(29), Logger = function() {
         function Logger() {}
         return Logger.log = function(msg, level) {}, Logger.debug = function(msg) {
             this.log(msg, LogLevel_1.LogLevel.debug);
@@ -210,6 +210,59 @@
     };
 }, function(module, exports, __webpack_require__) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
+    }), exports.Core = void 0;
+    var Core = function() {
+        function Core() {}
+        return Core.currentUrl = function() {
+            return window.location.href;
+        }, Object.defineProperty(Core, "url", {
+            get: function() {
+                return window.location.href;
+            },
+            enumerable: !1,
+            configurable: !0
+        }), Object.defineProperty(Core, "clearUrl", {
+            get: function() {
+                return this.url.replace(window.location.hash, "");
+            },
+            enumerable: !1,
+            configurable: !0
+        }), Object.defineProperty(Core, "hash", {
+            get: function() {
+                return window.location.hash.slice(1);
+            },
+            enumerable: !1,
+            configurable: !0
+        }), Core.open = function(url, front) {
+            void 0 === front && (front = !1), GM_openInTab(url, {
+                active: !front
+            });
+        }, Core.autoLazyload = function(isOk, callback, time) {
+            void 0 === time && (time = 5), isOk() ? callback() : setTimeout((function() {
+                Core.autoLazyload(isOk, callback, time);
+            }), 1e3 * time);
+        }, Core.background = function(callback, time) {
+            void 0 === time && (time = 5), setInterval((function() {
+                callback();
+            }), 1e3 * time);
+        }, Core.lazyload = function(callback, time) {
+            void 0 === time && (time = 5), setTimeout((function() {
+                callback();
+            }), 1e3 * time);
+        }, Core.addStyle = function(content) {
+            if (GM_addStyle) GM_addStyle(content); else {
+                var style = unsafeWindow.window.document.createElement("style");
+                style.innerHTML = content, unsafeWindow.window.document.head.append(style);
+            }
+        }, Core.Click = function(selector, handle) {
+            $(selector).on("click", handle);
+        }, Core;
+    }();
+    exports.Core = Core;
+}, function(module, exports, __webpack_require__) {
+    "use strict";
     var __importDefault = this && this.__importDefault || function(mod) {
         return mod && mod.__esModule ? mod : {
             default: mod
@@ -218,8 +271,8 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.Alert = void 0;
-    var sweetalert2_1 = __importDefault(__webpack_require__(24));
-    __webpack_require__(25), __webpack_require__(26);
+    var sweetalert2_1 = __importDefault(__webpack_require__(25));
+    __webpack_require__(26), __webpack_require__(27);
     var Alert = function() {
         function Alert() {}
         return Alert.confirm = function(msg, confirmTxt, cancelTxt) {
@@ -327,44 +380,75 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: !0
-    }), exports.Core = void 0;
-    var Core = function() {
-        function Core() {}
-        return Core.currentUrl = function() {
-            return window.location.href;
-        }, Object.defineProperty(Core, "url", {
-            get: function() {
-                return window.location.href;
-            },
-            enumerable: !1,
-            configurable: !0
-        }), Object.defineProperty(Core, "clearUrl", {
-            get: function() {
-                return this.url.replace(window.location.hash, "");
-            },
-            enumerable: !1,
-            configurable: !0
-        }), Object.defineProperty(Core, "hash", {
-            get: function() {
-                return window.location.hash.slice(1);
-            },
-            enumerable: !1,
-            configurable: !0
-        }), Core.open = function(url, front) {
-            void 0 === front && (front = !1), GM_openInTab(url, {
-                active: !front
-            });
-        }, Core.autoLazyload = function(isOk, callback, time) {
-            void 0 === time && (time = 5), isOk() ? callback() : setTimeout((function() {
-                Core.autoLazyload(isOk, callback, time);
-            }), 1e3 * time);
-        }, Core.lazyload = function(callback, time) {
-            void 0 === time && (time = 5), setTimeout((function() {
-                callback();
-            }), 1e3 * time);
-        }, Core;
+    }), exports.SiteEnum = void 0, function(SiteEnum) {
+        SiteEnum.All = "All", SiteEnum.TaoBao = "TaoBao", SiteEnum.TMall = "TMall", SiteEnum.JingDong = "JingDong", 
+        SiteEnum.IQiYi = "IQiYi", SiteEnum.YouKu = "YouKu", SiteEnum.LeShi = "LeShi", SiteEnum.TuDou = "TuDou", 
+        SiteEnum.Tencent_V = "Tencent_V", SiteEnum.MangGuo = "MangGuo", SiteEnum.SoHu = "SoHu", 
+        SiteEnum.Acfun = "Acfun", SiteEnum.BiliBili = "BiliBili", SiteEnum.M1905 = "M1905", 
+        SiteEnum.PPTV = "PPTV", SiteEnum.YinYueTai = "YinYueTai", SiteEnum.WangYi = "WangYi", 
+        SiteEnum.Tencent_M = "Tencent_M", SiteEnum.KuGou = "KuGou", SiteEnum.KuWo = "KuWo", 
+        SiteEnum.XiaMi = "XiaMi", SiteEnum.TaiHe = "TaiHe", SiteEnum.QingTing = "QingTing", 
+        SiteEnum.LiZhi = "LiZhi", SiteEnum.MiGu = "MiGu", SiteEnum.XiMaLaYa = "XiMaLaYa", 
+        SiteEnum.SXB = "SXB", SiteEnum.BDY = "BDY", SiteEnum.BDY1 = "BDY1", SiteEnum.BD_DETAIL_OLD = "BD_DETAIL_OLD", 
+        SiteEnum.BD_DETAIL_NEW = "BD_DETAIL_NEW", SiteEnum.BD_DETAIL_Share = "BD_DETAIL_Share", 
+        SiteEnum.LZY = "LZY", SiteEnum.SuNing = "SuNing", SiteEnum.Vp = "Vp";
+    }(exports.SiteEnum || (exports.SiteEnum = {}));
+}, function(module, exports, __webpack_require__) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
+    }), exports.AppBase = void 0;
+    var Logger_1 = __webpack_require__(0), Core_1 = __webpack_require__(2), AppBase = function() {
+        function AppBase() {
+            var _this = this;
+            this._unique = !0, this.Process = function() {
+                _this.loader(), _this.run();
+            };
+        }
+        return AppBase.prototype.unique = function() {
+            return this._unique;
+        }, AppBase.prototype.linkTest = function(url) {
+            var _this = this;
+            url || (url = Core_1.Core.currentUrl());
+            var flag = !1;
+            return this.rules.forEach((function(v, k) {
+                return !v.test(url) || (Logger_1.Logger.debug("app:" + _this.appName + " test pass"), 
+                flag = !0, _this.site = k, !1);
+            })), flag;
+        }, AppBase;
     }();
-    exports.Core = Core;
+    exports.AppBase = AppBase;
+}, function(module, exports, __webpack_require__) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
+    }), exports.Config = void 0;
+    var Logger_1 = __webpack_require__(0), Config = function() {
+        function Config() {}
+        return Config.set = function(key, v, exp) {
+            void 0 === exp && (exp = -1);
+            var obj = {
+                key: key,
+                value: v,
+                exp: -1 == exp ? exp : (new Date).getTime() + 1e3 * exp
+            };
+            GM_setValue("pantools_" + this.encode(key), JSON.stringify(obj));
+        }, Config.get = function(key, defaultValue) {
+            void 0 === defaultValue && (defaultValue = !1);
+            var objStr = GM_getValue("pantools_" + this.encode(key));
+            if (objStr) {
+                var obj = JSON.parse(objStr);
+                if (-1 == obj.exp || obj.exp > (new Date).getTime()) return Logger_1.Logger.info(key + " cache true"), 
+                obj.value;
+            }
+            return Logger_1.Logger.info(key + " cache false"), defaultValue;
+        }, Config.decode = function(str) {
+            return atob(str);
+        }, Config.encode = function(str) {
+            return btoa(str);
+        }, Config;
+    }();
+    exports.Config = Config;
 }, function(module, exports, __webpack_require__) {
     "use strict";
     module.exports = function(useSourceMap) {
@@ -402,93 +486,19 @@
         }, list;
     };
 }, function(module, exports, __webpack_require__) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-        value: !0
-    }), exports.SiteEnum = void 0, function(SiteEnum) {
-        SiteEnum.All = "All", SiteEnum.TaoBao = "TaoBao", SiteEnum.TMall = "TMall", SiteEnum.JingDong = "JingDong", 
-        SiteEnum.IQiYi = "IQiYi", SiteEnum.YouKu = "YouKu", SiteEnum.LeShi = "LeShi", SiteEnum.TuDou = "TuDou", 
-        SiteEnum.Tencent_V = "Tencent_V", SiteEnum.MangGuo = "MangGuo", SiteEnum.SoHu = "SoHu", 
-        SiteEnum.Acfun = "Acfun", SiteEnum.BiliBili = "BiliBili", SiteEnum.M1905 = "M1905", 
-        SiteEnum.PPTV = "PPTV", SiteEnum.YinYueTai = "YinYueTai", SiteEnum.WangYi = "WangYi", 
-        SiteEnum.Tencent_M = "Tencent_M", SiteEnum.KuGou = "KuGou", SiteEnum.KuWo = "KuWo", 
-        SiteEnum.XiaMi = "XiaMi", SiteEnum.TaiHe = "TaiHe", SiteEnum.QingTing = "QingTing", 
-        SiteEnum.LiZhi = "LiZhi", SiteEnum.MiGu = "MiGu", SiteEnum.XiMaLaYa = "XiMaLaYa", 
-        SiteEnum.SXB = "SXB", SiteEnum.BDY = "BDY", SiteEnum.BDY1 = "BDY1", SiteEnum.BD_DETAIL_OLD = "BD_DETAIL_OLD", 
-        SiteEnum.BD_DETAIL_NEW = "BD_DETAIL_NEW", SiteEnum.BD_DETAIL_Share = "BD_DETAIL_Share", 
-        SiteEnum.LZY = "LZY", SiteEnum.SuNing = "SuNing", SiteEnum.Vp = "Vp";
-    }(exports.SiteEnum || (exports.SiteEnum = {}));
-}, function(module, exports, __webpack_require__) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-        value: !0
-    }), exports.AppBase = void 0;
-    var Logger_1 = __webpack_require__(0), Core_1 = __webpack_require__(3), AppBase = function() {
-        function AppBase() {
-            var _this = this;
-            this._unique = !0, this.Process = function() {
-                _this.loader(), _this.run();
-            };
-        }
-        return AppBase.prototype.unique = function() {
-            return this._unique;
-        }, AppBase.prototype.linkTest = function(url) {
-            var _this = this;
-            url || (url = Core_1.Core.currentUrl());
-            var flag = !1;
-            return this.rules.forEach((function(v, k) {
-                return v.test(url) ? (Logger_1.Logger.debug("app:" + _this.appName + " test pass"), 
-                flag = !0, _this.site = k, !1) : (Logger_1.Logger.debug("app:" + _this.appName + " test fail"), 
-                !0);
-            })), flag;
-        }, AppBase;
-    }();
-    exports.AppBase = AppBase;
-}, function(module, exports, __webpack_require__) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-        value: !0
-    }), exports.Config = void 0;
-    var Logger_1 = __webpack_require__(0), Config = function() {
-        function Config() {}
-        return Config.set = function(key, v, exp) {
-            void 0 === exp && (exp = -1);
-            var obj = {
-                key: key,
-                value: v,
-                exp: -1 == exp ? exp : (new Date).getTime() + 1e3 * exp
-            };
-            GM_setValue(this.encode(key), JSON.stringify(obj));
-        }, Config.get = function(key, defaultValue) {
-            void 0 === defaultValue && (defaultValue = !1);
-            var objStr = GM_getValue(this.encode(key));
-            if (objStr) {
-                var obj = JSON.parse(objStr);
-                if (-1 == obj.exp || obj.exp > (new Date).getTime()) return Logger_1.Logger.info(key + " cache true"), 
-                obj.value;
-            }
-            return Logger_1.Logger.info(key + " cache false"), defaultValue;
-        }, Config.decode = function(str) {
-            return atob(str);
-        }, Config.encode = function(str) {
-            return btoa(str);
-        }, Config;
-    }();
-    exports.Config = Config;
-}, function(module, exports, __webpack_require__) {
-    (exports = __webpack_require__(4)(!1)).push([ module.i, ".pantools-container{z-index:99999 !important}.pantools-popup{font-size:14px !important}.pantools-setting-label{display:flex;align-items:center;justify-content:space-between;padding-top:20px}.pantools-setting-checkbox{width:16px;height:16px}\n", "" ]), 
+    (exports = __webpack_require__(7)(!1)).push([ module.i, ".pantools-container{z-index:99999 !important}.pantools-popup{font-size:14px !important}.pantools-setting-label{display:flex;align-items:center;justify-content:space-between;padding-top:20px}.pantools-setting-checkbox{width:16px;height:16px}\n", "" ]), 
     module.exports = exports;
 }, function(module, exports, __webpack_require__) {
-    (exports = __webpack_require__(4)(!1)).push([ module.i, ".pantools-popup{padding:1.25em 0 0 0}\n", "" ]), 
+    (exports = __webpack_require__(7)(!1)).push([ module.i, ".pantools-popup{padding:1.25em 0 0 0}\n", "" ]), 
     module.exports = exports;
 }, function(module, exports, __webpack_require__) {
-    (exports = __webpack_require__(4)(!1)).push([ module.i, "#pantools-top-outside{display:flex}#pantools-top-left-fileinfo{width:55%;min-width:480px;border:#b8daff;background-color:#b8daff;border-radius:5px;padding-bottom:10px}#pantools-top-right-qrcode{margin-left:auto;flex:auto}#pantools-top-right-qrcode img{width:90%}#pantools-top-left-fileinfo p{text-align:left;margin:10px 0 0 10px}#pantools-top-left-fileinfo input{box-sizing:border-box;width:90%;transition:border-color .3s, box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;box-shadow:inset 0 1px 1px;color:inherit;font-size:1.125em}#pantools-top-left-fileinfo button{font-size:1em}#pantools-bottom-outside div{display:flex;padding-top:5px}#pantools-bottom-outside button{margin-left:5px;font-size:1em}\n", "" ]), 
+    (exports = __webpack_require__(7)(!1)).push([ module.i, "#pantools-top-outside{display:flex}#pantools-top-left-fileinfo{width:55%;min-width:480px;border:#b8daff;background-color:#b8daff;border-radius:5px;padding-bottom:10px}#pantools-top-right-qrcode{margin-left:auto;flex:auto}#pantools-top-right-qrcode img{width:90%}#pantools-top-left-fileinfo p{text-align:left;margin:10px 0 0 10px}#pantools-top-left-fileinfo input{box-sizing:border-box;width:90%;transition:border-color .3s, box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;box-shadow:inset 0 1px 1px;color:inherit;font-size:1.125em}#pantools-top-left-fileinfo button{font-size:1em}#pantools-bottom-outside div{display:flex;padding-top:5px}#pantools-bottom-outside button{margin-left:5px;font-size:1em}\n", "" ]), 
     module.exports = exports;
 }, function(module, exports, __webpack_require__) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: !0
-    }), exports.IocAuto = exports.Container = void 0, __webpack_require__(18);
+    }), exports.IocAuto = exports.Container = void 0, __webpack_require__(19);
     var container = new Map, Container = function() {
         function Container() {}
         return Container.Registe = function(type, args) {
@@ -529,7 +539,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.PanRoutes = void 0;
-    var SiteEnum_1 = __webpack_require__(5), PanType_1 = __webpack_require__(13);
+    var SiteEnum_1 = __webpack_require__(4), PanType_1 = __webpack_require__(13);
     exports.PanRoutes = [ {
         type: PanType_1.PanTypeEnum.\u767e\u5ea6\u4e91\u76d8,
         SiteEnum: SiteEnum_1.SiteEnum.BDY,
@@ -582,6 +592,103 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", {
         value: !0
+    }), exports.HttpHeaders = exports.Http = void 0;
+    var Alert_1 = __webpack_require__(3), Logger_1 = __webpack_require__(0), Common_1 = __webpack_require__(17), Http = function() {
+        function Http() {}
+        return Http.ajax = function(option) {
+            var head = new HttpHeaders;
+            head["User-Agent"] = "Mozilla/4.0 (compatible) Greasemonkey", head.Accept = "application/atom+xml,application/xml,text/xml", 
+            option.headers;
+            try {
+                GM_xmlhttpRequest(option);
+            } catch (e) {
+                Logger_1.Logger.error(e);
+            }
+        }, Http.getFormData = function(data) {
+            if (data instanceof Map) {
+                var fd_1 = new FormData;
+                data.forEach((function(v, k) {
+                    var _v;
+                    _v = "string" == typeof v ? v.toString() : JSON.stringify(v), fd_1.append(k, _v);
+                })), data = fd_1;
+            }
+            return data;
+        }, Http._getData = function(data, contentType) {
+            if (void 0 === contentType && (contentType = "json"), data instanceof Map) {
+                var fd_2 = new FormData;
+                data.forEach((function(v, k) {
+                    fd_2.append(k, v);
+                })), data = fd_2;
+            }
+            var res = "";
+            if ("json" == contentType) {
+                var obj_1 = Object.create(null);
+                data.forEach((function(k, v) {
+                    obj_1[v] = k;
+                })), res = JSON.stringify(obj_1);
+            } else data.forEach((function(k, v) {
+                res += v + "=" + encodeURIComponent(k.toString()) + "&";
+            })), res = Common_1.Common.trim(res, "&");
+            return res;
+        }, Http.getData = function(url) {
+            return new Promise((function(resolve) {
+                $.getJSON(url, (function(d) {
+                    resolve(d);
+                }));
+            }));
+        }, Http.post = function(url, data, contentType, timeOut) {
+            return void 0 === contentType && (contentType = "json"), void 0 === timeOut && (timeOut = 10), 
+            new Promise((function(resolve, reject) {
+                Http.ajax({
+                    url: url,
+                    method: "POST",
+                    data: Http.getFormData(data),
+                    timeout: 1e3 * timeOut,
+                    onload: function(response) {
+                        var _a;
+                        try {
+                            var res = null !== (_a = JSON.parse(response.responseText)) && void 0 !== _a ? _a : response.responseText;
+                            resolve(res);
+                        } catch (error) {
+                            Logger_1.Logger.debug(error), reject();
+                        }
+                    },
+                    onerror: function(response) {
+                        Logger_1.Logger.error(response), reject();
+                    }
+                });
+            }));
+        }, Http.get = function(url, data, time_out) {
+            void 0 === data && (data = new Map), void 0 === time_out && (time_out = 10);
+            var loading = Alert_1.Alert.loading();
+            return new Promise((function(resolve, reject) {
+                Http.ajax({
+                    url: url,
+                    method: "GET",
+                    timeout: time_out,
+                    onload: function(response) {
+                        var _a;
+                        try {
+                            var res = null !== (_a = JSON.parse(response.responseText)) && void 0 !== _a ? _a : response.responseText;
+                            resolve(res);
+                        } catch (error) {
+                            Logger_1.Logger.debug(error), reject();
+                        }
+                        loading.then((function(res) {
+                            Alert_1.Alert.close(res);
+                        }));
+                    }
+                });
+            }));
+        }, Http;
+    }();
+    exports.Http = Http;
+    var HttpHeaders = function HttpHeaders() {};
+    exports.HttpHeaders = HttpHeaders;
+}, function(module, exports, __webpack_require__) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
     }), exports.Common = void 0;
     var Common = function() {
         function Common() {}
@@ -601,7 +708,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     });
-    var Container_1 = __webpack_require__(11), home_1 = __webpack_require__(21);
+    var Container_1 = __webpack_require__(11), home_1 = __webpack_require__(22);
     Container_1.Container.Require(home_1.PanTools).Init();
 }, function(module, exports, __webpack_require__) {
     (function(process, global) {
@@ -1109,7 +1216,7 @@
                 }(exporter);
             }();
         }(Reflect || (Reflect = {}));
-    }).call(this, __webpack_require__(19), __webpack_require__(20));
+    }).call(this, __webpack_require__(20), __webpack_require__(21));
 }, function(module, exports) {
     var cachedSetTimeout, cachedClearTimeout, process = module.exports = {};
     function defaultSetTimout() {
@@ -1214,9 +1321,9 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.PanTools = void 0;
-    var PanFill_1 = __webpack_require__(22), PanCode_1 = __webpack_require__(29), Container_1 = __webpack_require__(11), Logger_1 = __webpack_require__(0), PanParse_1 = __webpack_require__(30), PanTools = function() {
+    var PanFill_1 = __webpack_require__(23), PanCode_1 = __webpack_require__(30), Container_1 = __webpack_require__(11), Logger_1 = __webpack_require__(0), PanParse_1 = __webpack_require__(31), ListCoupon_1 = __webpack_require__(36), PanTools = function() {
         function PanTools() {
-            this.plugins = new Array, this.plugins = [ Container_1.Container.Require(PanCode_1.PanCode), Container_1.Container.Require(PanFill_1.PanFill), Container_1.Container.Require(PanParse_1.PanParse) ], 
+            this.plugins = new Array, this.plugins = [ Container_1.Container.Require(PanCode_1.PanCode), Container_1.Container.Require(PanFill_1.PanFill), Container_1.Container.Require(PanParse_1.PanParse), Container_1.Container.Require(ListCoupon_1.ListCoupon) ], 
             Logger_1.Logger.info("container loaded");
         }
         return PanTools.prototype.Init = function() {
@@ -1249,7 +1356,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.PanFill = void 0;
-    var Url_1 = __webpack_require__(23), Alert_1 = __webpack_require__(2), Core_1 = __webpack_require__(3), PanRoutes_1 = __webpack_require__(12), AppBase_1 = __webpack_require__(6), Config_1 = __webpack_require__(7), PanFill = function(_super) {
+    var Url_1 = __webpack_require__(24), Alert_1 = __webpack_require__(3), Core_1 = __webpack_require__(2), PanRoutes_1 = __webpack_require__(12), AppBase_1 = __webpack_require__(5), Config_1 = __webpack_require__(6), PanFill = function(_super) {
         function PanFill() {
             var _this = null !== _super && _super.apply(this, arguments) || this;
             return _this.appName = "PanFill", _this.rules = _this.getRules(), _this;
@@ -2978,7 +3085,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.PanCode = void 0;
-    var PanType_1 = __webpack_require__(13), Core_1 = __webpack_require__(3), Alert_1 = __webpack_require__(2), PanInfo_1 = __webpack_require__(14), Logger_1 = __webpack_require__(0), SiteEnum_1 = __webpack_require__(5), AppBase_1 = __webpack_require__(6), Config_1 = __webpack_require__(7), PanRoutes_1 = __webpack_require__(12), PanCode = function(_super) {
+    var PanType_1 = __webpack_require__(13), Core_1 = __webpack_require__(2), Alert_1 = __webpack_require__(3), PanInfo_1 = __webpack_require__(14), Logger_1 = __webpack_require__(0), SiteEnum_1 = __webpack_require__(4), AppBase_1 = __webpack_require__(5), Config_1 = __webpack_require__(6), PanRoutes_1 = __webpack_require__(12), PanCode = function(_super) {
         function PanCode() {
             var _this = null !== _super && _super.apply(this, arguments) || this;
             return _this._unique = !1, _this.appName = "PanCode", _this.rules = new Map([ [ SiteEnum_1.SiteEnum.All, /(.*)/i ] ]), 
@@ -3163,7 +3270,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.PanParse = void 0;
-    var AppBase_1 = __webpack_require__(6), SiteEnum_1 = __webpack_require__(5), Ele_1 = __webpack_require__(31), EventEnum_1 = __webpack_require__(15), Alert_1 = __webpack_require__(2), Logger_1 = __webpack_require__(0), PanInfo_1 = __webpack_require__(14), BaiduRoutes_1 = __webpack_require__(32), Common_1 = __webpack_require__(16), Config_1 = __webpack_require__(7), clipboard_1 = __importDefault(__webpack_require__(34)), Core_1 = __webpack_require__(3);
+    var AppBase_1 = __webpack_require__(5), SiteEnum_1 = __webpack_require__(4), Ele_1 = __webpack_require__(32), EventEnum_1 = __webpack_require__(15), Alert_1 = __webpack_require__(3), Logger_1 = __webpack_require__(0), PanInfo_1 = __webpack_require__(14), BaiduRoutes_1 = __webpack_require__(33), Common_1 = __webpack_require__(17), Config_1 = __webpack_require__(6), clipboard_1 = __importDefault(__webpack_require__(34)), Core_1 = __webpack_require__(2);
     __webpack_require__(35);
     var PanParse = function(_super) {
         function PanParse() {
@@ -3397,7 +3504,7 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.BaiduRoutes = void 0;
-    var Http_1 = __webpack_require__(33), BaiduRoutes = function() {
+    var Http_1 = __webpack_require__(16), BaiduRoutes = function() {
         function BaiduRoutes() {}
         return BaiduRoutes.shareFile = function(fsId, bdstoken, pwd) {
             void 0 === pwd && (pwd = "");
@@ -3415,103 +3522,6 @@
         }, BaiduRoutes.root = "https://pan.shuma.ink/ext_api.php", BaiduRoutes;
     }();
     exports.BaiduRoutes = BaiduRoutes;
-}, function(module, exports, __webpack_require__) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", {
-        value: !0
-    }), exports.HttpHeaders = exports.Http = void 0;
-    var Alert_1 = __webpack_require__(2), Logger_1 = __webpack_require__(0), Common_1 = __webpack_require__(16), Http = function() {
-        function Http() {}
-        return Http.ajax = function(option) {
-            var head = new HttpHeaders;
-            head["User-Agent"] = "Mozilla/4.0 (compatible) Greasemonkey", head.Accept = "application/atom+xml,application/xml,text/xml", 
-            option.headers;
-            try {
-                GM_xmlhttpRequest(option);
-            } catch (e) {
-                Logger_1.Logger.error(e);
-            }
-        }, Http.getFormData = function(data) {
-            if (data instanceof Map) {
-                var fd_1 = new FormData;
-                data.forEach((function(v, k) {
-                    var _v;
-                    _v = "string" == typeof v ? v.toString() : JSON.stringify(v), fd_1.append(k, _v);
-                })), data = fd_1;
-            }
-            return data;
-        }, Http._getData = function(data, contentType) {
-            if (void 0 === contentType && (contentType = "json"), data instanceof Map) {
-                var fd_2 = new FormData;
-                data.forEach((function(v, k) {
-                    fd_2.append(k, v);
-                })), data = fd_2;
-            }
-            var res = "";
-            if ("json" == contentType) {
-                var obj_1 = Object.create(null);
-                data.forEach((function(k, v) {
-                    obj_1[v] = k;
-                })), res = JSON.stringify(obj_1);
-            } else data.forEach((function(k, v) {
-                res += v + "=" + encodeURIComponent(k.toString()) + "&";
-            })), res = Common_1.Common.trim(res, "&");
-            return res;
-        }, Http.getData = function(url) {
-            return new Promise((function(resolve) {
-                $.getJSON(url, (function(d) {
-                    resolve(d);
-                }));
-            }));
-        }, Http.post = function(url, data, contentType, timeOut) {
-            return void 0 === contentType && (contentType = "json"), void 0 === timeOut && (timeOut = 10), 
-            new Promise((function(resolve, reject) {
-                Http.ajax({
-                    url: url,
-                    method: "POST",
-                    data: Http.getFormData(data),
-                    timeout: 1e3 * timeOut,
-                    onload: function(response) {
-                        var _a;
-                        try {
-                            var res = null !== (_a = JSON.parse(response.responseText)) && void 0 !== _a ? _a : response.responseText;
-                            resolve(res);
-                        } catch (error) {
-                            Logger_1.Logger.debug(error), reject();
-                        }
-                    },
-                    onerror: function(response) {
-                        Logger_1.Logger.error(response), reject();
-                    }
-                });
-            }));
-        }, Http.get = function(url, data, time_out) {
-            void 0 === data && (data = new Map), void 0 === time_out && (time_out = 10);
-            var loading = Alert_1.Alert.loading();
-            return new Promise((function(resolve, reject) {
-                Http.ajax({
-                    url: url,
-                    method: "GET",
-                    timeout: time_out,
-                    onload: function(response) {
-                        var _a;
-                        try {
-                            var res = null !== (_a = JSON.parse(response.responseText)) && void 0 !== _a ? _a : response.responseText;
-                            resolve(res);
-                        } catch (error) {
-                            Logger_1.Logger.debug(error), reject();
-                        }
-                        loading.then((function(res) {
-                            Alert_1.Alert.close(res);
-                        }));
-                    }
-                });
-            }));
-        }, Http;
-    }();
-    exports.Http = Http;
-    var HttpHeaders = function HttpHeaders() {};
-    exports.HttpHeaders = HttpHeaders;
 }, function(module, exports, __webpack_require__) {
     !function webpackUniversalModuleDefinition(root, factory) {
         module.exports = factory();
@@ -3947,4 +3957,300 @@
     };
     _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_PanDialog_css__WEBPACK_IMPORTED_MODULE_1___default.a, options);
     __webpack_exports__.default = _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_PanDialog_css__WEBPACK_IMPORTED_MODULE_1___default.a.locals || {};
+}, function(module, exports, __webpack_require__) {
+    "use strict";
+    var extendStatics, __extends = this && this.__extends || (extendStatics = function(d, b) {
+        return (extendStatics = Object.setPrototypeOf || {
+            __proto__: []
+        } instanceof Array && function(d, b) {
+            d.__proto__ = b;
+        } || function(d, b) {
+            for (var p in b) b.hasOwnProperty(p) && (d[p] = b[p]);
+        })(d, b);
+    }, function(d, b) {
+        function __() {
+            this.constructor = d;
+        }
+        extendStatics(d, b), d.prototype = null === b ? Object.create(b) : (__.prototype = b.prototype, 
+        new __);
+    }), __awaiter = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+        return new (P || (P = Promise))((function(resolve, reject) {
+            function fulfilled(value) {
+                try {
+                    step(generator.next(value));
+                } catch (e) {
+                    reject(e);
+                }
+            }
+            function rejected(value) {
+                try {
+                    step(generator.throw(value));
+                } catch (e) {
+                    reject(e);
+                }
+            }
+            function step(result) {
+                result.done ? resolve(result.value) : function adopt(value) {
+                    return value instanceof P ? value : new P((function(resolve) {
+                        resolve(value);
+                    }));
+                }(result.value).then(fulfilled, rejected);
+            }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        }));
+    }, __generator = this && this.__generator || function(thisArg, body) {
+        var f, y, t, g, _ = {
+            label: 0,
+            sent: function() {
+                if (1 & t[0]) throw t[1];
+                return t[1];
+            },
+            trys: [],
+            ops: []
+        };
+        return g = {
+            next: verb(0),
+            throw: verb(1),
+            return: verb(2)
+        }, "function" == typeof Symbol && (g[Symbol.iterator] = function() {
+            return this;
+        }), g;
+        function verb(n) {
+            return function(v) {
+                return function step(op) {
+                    if (f) throw new TypeError("Generator is already executing.");
+                    for (;_; ) try {
+                        if (f = 1, y && (t = 2 & op[0] ? y.return : op[0] ? y.throw || ((t = y.return) && t.call(y), 
+                        0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                        switch (y = 0, t && (op = [ 2 & op[0], t.value ]), op[0]) {
+                          case 0:
+                          case 1:
+                            t = op;
+                            break;
+
+                          case 4:
+                            return _.label++, {
+                                value: op[1],
+                                done: !1
+                            };
+
+                          case 5:
+                            _.label++, y = op[1], op = [ 0 ];
+                            continue;
+
+                          case 7:
+                            op = _.ops.pop(), _.trys.pop();
+                            continue;
+
+                          default:
+                            if (!(t = _.trys, (t = t.length > 0 && t[t.length - 1]) || 6 !== op[0] && 2 !== op[0])) {
+                                _ = 0;
+                                continue;
+                            }
+                            if (3 === op[0] && (!t || op[1] > t[0] && op[1] < t[3])) {
+                                _.label = op[1];
+                                break;
+                            }
+                            if (6 === op[0] && _.label < t[1]) {
+                                _.label = t[1], t = op;
+                                break;
+                            }
+                            if (t && _.label < t[2]) {
+                                _.label = t[2], _.ops.push(op);
+                                break;
+                            }
+                            t[2] && _.ops.pop(), _.trys.pop();
+                            continue;
+                        }
+                        op = body.call(thisArg, _);
+                    } catch (e) {
+                        op = [ 6, e ], y = 0;
+                    } finally {
+                        f = t = 0;
+                    }
+                    if (5 & op[0]) throw op[1];
+                    return {
+                        value: op[0] ? op[1] : void 0,
+                        done: !0
+                    };
+                }([ n, v ]);
+            };
+        }
+    };
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
+    }), exports.ListCoupon = void 0;
+    var AppBase_1 = __webpack_require__(5), SiteEnum_1 = __webpack_require__(4), ItemType_1 = __webpack_require__(37), Core_1 = __webpack_require__(2), Config_1 = __webpack_require__(6), CouponRoutes_1 = __webpack_require__(38), Tao_1 = __webpack_require__(39), ListCoupon = function(_super) {
+        function ListCoupon() {
+            var _this = null !== _super && _super.apply(this, arguments) || this;
+            return _this.appName = "ListCoupon", _this.rules = new Map([ [ SiteEnum_1.SiteEnum.TaoBao, /s.taobao.com\/search/i ], [ SiteEnum_1.SiteEnum.TMall, /list.tmall.com\/search_product.htm/i ] ]), 
+            _this.selectorList = [], _this.atrack = [], _this.key = "list_coupon", _this;
+        }
+        return __extends(ListCoupon, _super), ListCoupon.prototype.loader = function() {}, 
+        Object.defineProperty(ListCoupon, "style", {
+            get: function() {
+                return "    \n    .PanTools-tb-box-area {position: absolute;top: 10px;right: 5px;z-index: 9999;}\n    .PanTools-jd-box-area {position: absolute;top: 235px;left: 10px;z-index: 9999;}  \n    .PanTools-jdcs-box-area {position: absolute;top: 5px;right: 0px;z-index: 9999;}\n    .PanTools-box-info-translucent{opacity: .33;}\n    .PanTools-box-info, .PanTools-box-info:hover, .PanTools-box-info:visited {text-decoration: none!important;}\n    .PanTools-box-wait{cursor:pointer}\n    .PanTools-box-info {width: auto!important;height: auto!important;padding: 6px 8px!important;font-size: 12px;color: #fff!important;border-radius: 15px;cursor: pointer;}\n    .PanTools-jd-box-info-default, .PanTools-tb-box-info-default, .PanTools-jdcs-box-info-default{background: #3186fd!important;}\n    .PanTools-box-info-empty {color: #000!important;background: #ccc!important;}\n    .PanTools-box-info-find {background: #ff0036!important;}\n    .PanTools-box-done{position:relative}\n    ";
+            },
+            enumerable: !1,
+            configurable: !0
+        }), ListCoupon.prototype.run = function() {
+            switch (this.site) {
+              case SiteEnum_1.SiteEnum.TaoBao:
+                this.selectorList.push(".items .item"), this.atrack.push(".pic a", ".title a"), 
+                this.itemType = ItemType_1.ItemType.TaoBao;
+                break;
+
+              case SiteEnum_1.SiteEnum.TMall:
+                this.selectorList.push(".product"), this.atrack.push(".productImg-wrap a", ".productTitle a"), 
+                this.itemType = ItemType_1.ItemType.TaoBao;
+            }
+            var that = this;
+            this.initStyle(), Core_1.Core.autoLazyload((function() {
+                try {
+                    return null != $ && null != jQuery;
+                } catch (e) {
+                    return !1;
+                }
+            }), (function() {
+                return that.initSearchEvent();
+            }), 3), Core_1.Core.background((function() {
+                return that.initSearch(that);
+            }), 3), Core_1.Core.background((function() {
+                return that.initQuery();
+            }), 4);
+        }, ListCoupon.prototype.initStyle = function() {
+            Core_1.Core.addStyle(ListCoupon.style);
+        }, ListCoupon.prototype.initSearchEvent = function() {
+            var that = this;
+            try {
+                $(document).on("click", ".PanTools-" + that.itemType + "-box-area", (function() {
+                    var $this = $(this);
+                    $this.hasClass("PanTools-box-wait") ? that.queryInfo(this) : $this.hasClass("PanTools-box-info-translucent") ? $this.removeClass("PanTools-box-info-translucent") : $this.addClass("PanTools-box-info-translucent");
+                }));
+            } catch (e) {
+                Core_1.Core.background((function() {
+                    $(".PanTools-" + that.itemType + "-box-area").click((function() {
+                        var $this = $(this);
+                        $this.hasClass("PanTools-box-wait") ? that.queryInfo(this) : $this.hasClass("PanTools-box-info-translucent") ? $this.removeClass("PanTools-box-info-translucent") : $this.addClass("PanTools-box-info-translucent");
+                    }));
+                }));
+            }
+        }, ListCoupon.prototype.initSearch = function(that) {
+            that.selectorList.forEach((function(e, i) {
+                $(e).each((function(index, ele) {
+                    that.initSearchItem(ele);
+                }));
+            }));
+        }, ListCoupon.prototype.initSearchItem = function(selector) {
+            var _a, _b, _c, _d, _e, _f, $dom = $(selector);
+            if (!$dom.hasClass("PanTools-box-done")) {
+                $dom.addClass("PanTools-box-done");
+                var itemId = null !== (_b = null !== (_a = $dom.attr("data-id")) && void 0 !== _a ? _a : $dom.data("sku")) && void 0 !== _b ? _b : "";
+                if (Tao_1.Tao.isVailidItemId(itemId) || (itemId = null !== (_d = null !== (_c = $dom.attr("data-itemid")) && void 0 !== _c ? _c : $dom.data("spu")) && void 0 !== _d ? _d : ""), 
+                !Tao_1.Tao.isVailidItemId(itemId)) if ($dom.attr("href")) itemId = location.protocol + $dom.attr("href"); else {
+                    var $a = $dom.find("a");
+                    if (!$a.length) return;
+                    itemId = null !== (_e = $a.attr("data-nid")) && void 0 !== _e ? _e : "", Tao_1.Tao.isVailidItemId(itemId) || (itemId = $a.hasClass("j_ReceiveCoupon") && $a.length > 1 ? location.protocol + $($a[1]).attr("href") : location.protocol + $a.attr("href"));
+                }
+                if (!Tao_1.Tao.isVailidItemId(itemId) && itemId.indexOf("http") > -1) {
+                    var res = null !== (_f = /item.jd.com\/(.*?).html/i.exec(itemId)) && void 0 !== _f ? _f : [];
+                    itemId = res.length > 0 ? res[1] : "";
+                }
+                Tao_1.Tao.isValidTaoId(itemId) && (this.initBoxHtml($dom, itemId), this.initTagClass($dom, itemId));
+            }
+        }, ListCoupon.prototype.initTagClass = function(target, itemId) {
+            this.atrack.forEach((function(e) {
+                target.find(e).hasClass("PanTools-item-" + itemId) || target.find(e).addClass("PanTools-item-" + itemId);
+            }));
+        }, ListCoupon.prototype.initBoxHtml = function(target, itemId) {
+            target.append('<div class="PanTools-' + this.itemType + '-box-area PanTools-box-wait" data-itemid="' + itemId + '"><a class="PanTools-box-info PanTools-' + this.itemType + '-box-info-default" title="\u70b9\u51fb\u67e5\u8be2">\u5f85\u67e5\u8be2</a></div>');
+        }, ListCoupon.prototype.initQuery = function() {
+            var _this = this;
+            $(".PanTools-box-wait").each((function(index, ele) {
+                _this.queryInfo(ele);
+            }));
+        }, ListCoupon.prototype.queryInfo = function(target) {
+            return __awaiter(this, void 0, void 0, (function() {
+                var that, $this, itemId, couponInfo;
+                return __generator(this, (function(_a) {
+                    switch (_a.label) {
+                      case 0:
+                        return that = this, ($this = $(target)).removeClass("PanTools-box-wait"), itemId = $this.data("itemid"), 
+                        (couponInfo = Config_1.Config.get("" + that.key + itemId)) ? (that.initCouponInfo(itemId, couponInfo, target), 
+                        [ 3, 3 ]) : [ 3, 1 ];
+
+                      case 1:
+                        return [ 4, CouponRoutes_1.CouponRoutes.couponQuery(itemId, that.itemType).then((function(couponInfoResult) {
+                            if (0 != couponInfoResult.code) {
+                                var couponInfo_1 = couponInfoResult.data;
+                                Config_1.Config.set("" + that.key + itemId, couponInfo_1, 14400), that.initCouponInfo(itemId, couponInfo_1, target);
+                            } else that.showQueryEmpty($this);
+                        })) ];
+
+                      case 2:
+                        _a.sent(), _a.label = 3;
+
+                      case 3:
+                        return [ 2 ];
+                    }
+                }));
+            }));
+        }, ListCoupon.prototype.initCouponInfo = function(itemId, couponInfo, target) {
+            var _a, $this = $(target);
+            if ((null === (_a = null == couponInfo ? void 0 : couponInfo.coupons) || void 0 === _a ? void 0 : _a.length) > 0) {
+                var coupon = couponInfo.coupons[0];
+                this.showQueryFind($this, coupon.coupon_price);
+            } else this.showQueryEmpty($this);
+            this.showItemUrl(itemId, null == couponInfo ? void 0 : couponInfo.item_url);
+        }, ListCoupon.prototype.showItemUrl = function(itemId, itemUrl) {
+            void 0 !== itemUrl && Core_1.Core.Click(".PanTools-item-" + itemId, (function() {
+                return Core_1.Core.open(itemUrl), !1;
+            }));
+        }, ListCoupon.prototype.showQueryFind = function(selector, couponMoney) {
+            selector.html('<a target="_blank" class="PanTools-box-info PanTools-box-info-find" title="\u5207\u6362\u900f\u660e\u5ea6">' + couponMoney + "\u5143\u5238</a>");
+        }, ListCoupon.prototype.showQueryEmpty = function(selector) {
+            selector.addClass("PanTools-box-info-translucent"), selector.html('<a href="javascript:void(0);" class="PanTools-box-info PanTools-box-info-empty" title="\u5207\u6362\u900f\u660e\u5ea6">\u6682\u65e0\u4f18\u60e0</a>');
+        }, ListCoupon;
+    }(AppBase_1.AppBase);
+    exports.ListCoupon = ListCoupon;
+}, function(module, exports, __webpack_require__) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
+    }), exports.ItemType = void 0, function(ItemType) {
+        ItemType.TaoBao = "tb", ItemType.TMall = "tm", ItemType.JingDong = "jd", ItemType.JingDongChaoshi = "jdcs";
+    }(exports.ItemType || (exports.ItemType = {}));
+}, function(module, exports, __webpack_require__) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
+    }), exports.CouponRoutes = void 0;
+    var Http_1 = __webpack_require__(16), CouponRoutes = function() {
+        function CouponRoutes() {}
+        return CouponRoutes.couponQuery = function(id, type) {
+            var data = new Map;
+            return data.set("id", id), data.set("type", type), Http_1.Http.post("https://api.shuma.ink/quan/info", data, "formdata");
+        }, CouponRoutes;
+    }();
+    exports.CouponRoutes = CouponRoutes;
+}, function(module, exports, __webpack_require__) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: !0
+    }), exports.Tao = void 0;
+    var Tao = function() {
+        function Tao() {}
+        return Tao.isVailidItemId = function(itemId) {
+            if (!itemId) return !1;
+            var itemIdInt = parseInt(itemId);
+            return itemIdInt.toString() == itemId && itemIdInt > 1e4;
+        }, Tao.isValidTaoId = function(itemId) {
+            return !!itemId && (!!Tao.isNumber(itemId) || (!(itemId.indexOf("http") >= 0) || !(!this.isTaoBaoDetailPage(itemId) && !itemId.includes("//detail.ju.taobao.com/home.htm"))));
+        }, Tao.isTaoBaoDetailPage = function(url) {
+            return url.includes("//item.taobao.com/item.htm") || url.includes("//detail.tmall.com/item.htm") || url.includes("//chaoshi.detail.tmall.com/item.htm") || url.includes("//detail.tmall.hk/hk/item.htm");
+        }, Tao.isNumber = function(a) {
+            return !Array.isArray(a) && a - parseFloat(a) >= 0;
+        }, Tao;
+    }();
+    exports.Tao = Tao;
 } ]);
